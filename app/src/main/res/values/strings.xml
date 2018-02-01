@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">PMQ</string>
-    <string name="prompt_username">Username</string>
-    <string name="prompt_password">Password</string>
+    <string name="prompt_party_name">Party Name</string>
+    <string name="prompt_pass_phrase">Pass Phrase</string>
     <string name="action_log_in_short">Log In Short</string>
 
 </resources>

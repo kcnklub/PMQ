@@ -16,8 +16,8 @@ class SignInActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_in)
 
-        var username:AutoCompleteTextView = findViewById(R.id.username_signin)
-        var password:EditText = findViewById(R.id.password_signin)
+        //var username:AutoCompleteTextView = findViewById(R.id.username_signin)
+        //var password:EditText = findViewById(R.id.password_signin)
         val signInButton:Button = findViewById(R.id.signin_button)
         val registerButton:Button = findViewById(R.id.register_button)
 
