@@ -9,9 +9,13 @@ import io.realm.Realm
 
 class MyApplication : Application() {
 
+    companion object {
+        val AUTH_URL = "somsething"
+    }
+
     override fun onCreate(){
+
         super.onCreate()
         Realm.init(this)
     }
-
 }
