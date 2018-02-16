@@ -1,5 +1,6 @@
 package com.music.party.pmq
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
@@ -36,13 +37,14 @@ class SignInActivity : AppCompatActivity(), SyncUser.Callback<SyncUser> {
         }
 
         registerButton.setOnClickListener { view ->
-
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
         }
     }
 
     private fun attemptLogin(){
-        var usernameView:AutoCompleteTextView = findViewById(R.id.username_signin)
-        var passwordView:EditText = findViewById(R.id.password_signin)
+        val usernameView:AutoCompleteTextView = findViewById(R.id.username_signin)
+        val passwordView:EditText = findViewById(R.id.password_signin)
 
         usernameView.error = null
         passwordView.error = null
@@ -74,13 +76,14 @@ class SignInActivity : AppCompatActivity(), SyncUser.Callback<SyncUser> {
         }
     }
 
-    fun loginComplete(user: SyncUser?){
+    private fun loginComplete(user: SyncUser?){
         Log.d(TAG, "LOGIN IN COMPLETE")
 
         UserManager.setActiveUser(user)
-
-        //TODO move to main activity lol
-
+        // move to main activity and end this activity
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
 
@@ -91,7 +94,7 @@ class SignInActivity : AppCompatActivity(), SyncUser.Callback<SyncUser> {
 
     override fun onError(error: ObjectServerError?) {
         Log.d(TAG, "Failed but not running this")
-        var errorMsg: String?
+        val errorMsg: String?
         when(error?.errorCode){
             ErrorCode.UNKNOWN -> errorMsg = "Account does not exist"
             ErrorCode.INVALID_CREDENTIALS -> errorMsg = "The Provided credentials are invalid!"

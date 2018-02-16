@@ -5,4 +5,10 @@
     <string name="action_log_in_short">Log In Short</string>
     <string name="error_invalid_password">Please enter valid password</string>
     <string name="error_required_field">Field is Required</string>
+    <string name="prompt_username">Username</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="prompt_password_confirm">Confirm Password</string>
+    <string name="register">Register</string>
+    <string name="passwords_dont_match">Passwords Do Not Match</string>
 </resources>

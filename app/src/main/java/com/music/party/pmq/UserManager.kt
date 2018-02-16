@@ -1,5 +1,8 @@
 package com.music.party.pmq
 
+import com.music.party.pmq.modules.personalModule
+import io.realm.Realm
+import io.realm.SyncConfiguration
 import io.realm.SyncUser
 
 /**
@@ -7,7 +10,12 @@ import io.realm.SyncUser
  */
 object UserManager {
 
-    fun setActiveUser(user: SyncUser?){
+    private var TAG: String = "User Manager"
 
+    fun setActiveUser(user: SyncUser?){
+        val defaultConfig: SyncConfiguration = SyncConfiguration.Builder(user, MyApplication.REALM_URL)
+                .modules(personalModule())
+                .build()
+        Realm.setDefaultConfiguration(defaultConfig)
     }
 }

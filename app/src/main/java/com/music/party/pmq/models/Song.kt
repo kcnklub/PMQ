@@ -15,6 +15,14 @@ open class Song(
         var songUrl : String
 ) : RealmObject(){
 
+    companion object {
+        val ID = "id"
+        val NAME = "name"
+        val ARTIST = "artist"
+        val ALBUM = "album"
+        val SONG_URL = "songUrl"
+    }
+
     //Default constructor.
     constructor() : this(0, "", "", "", "")
 

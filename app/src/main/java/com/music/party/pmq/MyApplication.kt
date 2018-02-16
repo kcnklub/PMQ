@@ -10,11 +10,12 @@ import io.realm.Realm
 class MyApplication : Application() {
 
     companion object {
-        val AUTH_URL = "somsething"
+        val AUTH_URL = "http://" + BuildConfig.OBJECT_SERVER_IP + ":9080/auth"
+        val REALM_URL = "http://" + BuildConfig.OBJECT_SERVER_IP + ":9080/~/PMQ"
+        val COMMON_URL = "http://" + BuildConfig.OBJECT_SERVER_IP + ":9080/Common_PMQ"
     }
 
     override fun onCreate(){
-
         super.onCreate()
         Realm.init(this)
     }

@@ -14,6 +14,14 @@ open class Party (
         var queueURL: String
 ) : RealmObject() {
 
+
+    companion object {
+        val ID = "id"
+        val NAME = "name"
+        val OWNER_ID = "ownerID"
+        val QUEUE_URL = "queueURL"
+    }
+
     //default constructor
     constructor() : this (0, "", "", "")
 

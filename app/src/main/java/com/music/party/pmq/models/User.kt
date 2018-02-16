@@ -13,6 +13,12 @@ open class User(
         var isPartyOwner: Boolean
 ) : RealmObject() {
 
+    companion object {
+        val ID = "id"
+        val DISPLAY_NAME = "displayName"
+        val IS_PARTY_OWNER = "isPartyOwner"
+    }
+
     //default constructor
     constructor() : this("", "", false)
     
