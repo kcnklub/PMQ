@@ -1,5 +1,6 @@
 package com.music.party.pmq
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.AutoCompleteTextView
@@ -20,6 +21,7 @@ class SignInActivity : AppCompatActivity() {
         //var password:EditText = findViewById(R.id.password_signin)
         val signInButton:Button = findViewById(R.id.signin_button)
         val registerButton:Button = findViewById(R.id.register_button)
+        val testButton:Button = findViewById(R.id.spotify)
 
         signInButton.setOnClickListener { view ->
             Toast.makeText(this, "something", Toast.LENGTH_LONG).show()
@@ -27,6 +29,12 @@ class SignInActivity : AppCompatActivity() {
 
         registerButton.setOnClickListener { view ->
 
+        }
+
+        testButton.setOnClickListener { view ->
+            //TODO this is it.
+            var intent: Intent = Intent(this, SpotifyAuth::class.java)
+            startActivity(intent)
         }
     }
 }

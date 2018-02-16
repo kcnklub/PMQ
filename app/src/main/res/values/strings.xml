@@ -3,5 +3,7 @@
     <string name="prompt_party_name">Party Name</string>
     <string name="prompt_pass_phrase">Pass Phrase</string>
     <string name="action_log_in_short">Log In Short</string>
-
+    <string name="sign_in_activity_label">Sign In</string>
+    <string name="main_activity_label">Main Activity</string>
+    <string name="spotify_activity_label">Spotify Auth</string>
 </resources>
