@@ -9,7 +9,7 @@ import io.realm.annotations.PrimaryKey
 
 open class User(
         @PrimaryKey var id: String,
-        var displayName: String,
+        var email: String,
         var isPartyOwner: Boolean
 ) : RealmObject() {
 
@@ -17,6 +17,7 @@ open class User(
         val ID = "id"
         val DISPLAY_NAME = "displayName"
         val IS_PARTY_OWNER = "isPartyOwner"
+        val EMAIL = "email"
     }
 
     //default constructor
