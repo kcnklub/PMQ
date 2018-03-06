@@ -1,7 +1,7 @@
 package com.music.party.pmq
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import com.music.party.pmq.models.PartyQueue
 import io.realm.SyncUser

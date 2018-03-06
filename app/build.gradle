@@ -35,6 +35,14 @@ realm {
     syncEnabled = true
 }
 
+repositories {
+    mavenCentral()
+    maven { url "https://jitpack.io" }
+    flatDir {
+        dirs 'libs'
+    }
+}
+
 dependencies {
     compile 'com.android.support:multidex:1.0.3'
     compile 'com.android.support:appcompat-v7:26.1.0'
@@ -52,4 +60,8 @@ dependencies {
     compile 'com.android.support:customtabs:26.1.0'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    compile 'com.squareup.okhttp3:okhttp:3.4.1'
+    compile(name: 'spotify-auth-1.0.0-beta12', ext: 'aar')
+    compile 'com.spotify.sdk:spotify-player-24-noconnect-2.20b@aar'
+    compile 'com.github.kaaes:spotify-web-api-android:0.4.1'
 }

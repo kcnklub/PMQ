@@ -30,6 +30,7 @@ class SignInActivity : AppCompatActivity(), SyncUser.Callback<SyncUser> {
 
         val signInButton:Button = findViewById(R.id.signin_button)
         val registerButton:Button = findViewById(R.id.register_button)
+        val testButton:Button = findViewById(R.id.spotify)
 
         signInButton.setOnClickListener { attemptLogin()}
 
@@ -79,6 +80,12 @@ class SignInActivity : AppCompatActivity(), SyncUser.Callback<SyncUser> {
         } else {
             Log.d(TAG, "Logining IN")
             SyncUser.loginAsync(SyncCredentials.usernamePassword(email, password, false), MyApplication.AUTH_URL, this)
+        }
+
+        testButton.setOnClickListener { view ->
+            //TODO this is it.
+            var intent: Intent = Intent(this, SpotifyAuth::class.java)
+            startActivity(intent)
         }
     }
 
