@@ -9,13 +9,24 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import com.facebook.login.LoginResult
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.auth.api.signin.GoogleSignInResult
+import com.music.party.pmq.MyApplication.Companion.AUTH_URL
+import com.music.party.pmq.auth.facebook.FacebookAuth
+import com.music.party.pmq.auth.google.GoogleAuth
 import com.music.party.pmq.models.User
 import com.music.party.pmq.modules.commonModule
 import io.realm.*
+import io.realm.SyncCredentials.google
 
+@Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class RegisterActivity : AppCompatActivity(), SyncUser.Callback<SyncUser> {
 
     private var userProviderId: String = ""
+    private var googleAuth: GoogleAuth? = null
+    private var facebookAuth: FacebookAuth? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +37,34 @@ class RegisterActivity : AppCompatActivity(), SyncUser.Callback<SyncUser> {
         registerButton.setOnClickListener {_ ->
             attemptRegister()
         }
+
+        //Set up facebook Auth
+        facebookAuth = object : FacebookAuth(findViewById(R.id.login_button)){
+            override fun onRegistrationComplete(loginResult: LoginResult?) {
+                UserManager.setAuthMode(UserManager.AUTH_MODE.GOOGLE)
+                val credentials = SyncCredentials.facebook(loginResult?.accessToken!!.token)
+                userProviderId = credentials.identityProvider
+                SyncUser.loginAsync(credentials, AUTH_URL, this@RegisterActivity)
+            }
+        }
+
+        googleAuth = object : GoogleAuth(findViewById(R.id.sign_in_button), this){
+            override fun onRegistrationComplete(result: GoogleSignInResult) {
+                UserManager.setAuthMode(UserManager.AUTH_MODE.GOOGLE)
+                val acct: GoogleSignInAccount? = result.signInAccount
+                val credentials = google(acct?.idToken)
+                userProviderId = credentials.identityProvider
+                SyncUser.loginAsync(credentials, AUTH_URL, this@RegisterActivity)
+            }
+        }
+
     }
+
+    /* TODO: google and facebook login in.
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        googleAuth!!.onActivityResult(requestCode, resultCode, data)
+        facebookAuth!!.onActivityResult(requestCode, resultCode, data)
+    }*/
 
     private fun attemptRegister(){
         val usernameView: EditText = findViewById(R.id.username_register)
@@ -120,6 +158,7 @@ class RegisterActivity : AppCompatActivity(), SyncUser.Callback<SyncUser> {
             }
         })
 
+        Log.d("Tag", "We did it REGISTRATION COMPLETE")
         val intent = Intent(this, SignInActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         startActivity(intent)

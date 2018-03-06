@@ -21,24 +21,30 @@ import com.music.party.pmq.UserManager
 class SignInActivity : AppCompatActivity(), SyncUser.Callback<SyncUser> {
 
     val TAG: String = "Sign In Activty"
+    val ACTION_IGNORE_CURRENT_USER = "action.ignoreCurrentUser"
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_in)
 
-
         val signInButton:Button = findViewById(R.id.signin_button)
         val registerButton:Button = findViewById(R.id.register_button)
 
-        signInButton.setOnClickListener { view ->
-            Toast.makeText(this, "something", Toast.LENGTH_LONG).show()
+        signInButton.setOnClickListener { attemptLogin()}
 
-        }
-
-        registerButton.setOnClickListener { view ->
+        registerButton.setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
+        }
+
+        if(savedInstanceState == null){
+            if(!ACTION_IGNORE_CURRENT_USER.equals(intent.action)){
+                val user = SyncUser.currentUser()
+                if(user != null){
+                    loginComplete(user)
+                }
+            }
         }
     }
 
@@ -72,7 +78,7 @@ class SignInActivity : AppCompatActivity(), SyncUser.Callback<SyncUser> {
             focusView.requestFocus()
         } else {
             Log.d(TAG, "Logining IN")
-            SyncUser.loginAsync(SyncCredentials.usernamePassword(email, password, false), MyApplication.AUTH_URL, this);
+            SyncUser.loginAsync(SyncCredentials.usernamePassword(email, password, false), MyApplication.AUTH_URL, this)
         }
     }
 
