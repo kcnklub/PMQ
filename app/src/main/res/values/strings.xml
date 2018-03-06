@@ -6,4 +6,20 @@
     <string name="sign_in_activity_label">Sign In</string>
     <string name="main_activity_label">Main Activity</string>
     <string name="spotify_activity_label">Spotify Auth</string>
+    <string name="error_invalid_password">Please enter valid password</string>
+    <string name="error_required_field">Field is Required</string>
+    <string name="prompt_username">Username</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="prompt_password_confirm">Confirm Password</string>
+    <string name="register">Register</string>
+    <string name="passwords_dont_match">Passwords Do Not Match</string>
+
+    <string name="facebook_app_id">1862022307202550</string>
+    <string name="fb_login_protocol_scheme">fb1862022307202550</string>
+
+    <!-- TODO(user): replace with your real server client ID -->
+    <!-- Server Client ID.  This should be a valid Web OAuth 2.0 Client ID obtained
+         from https://console.developers.google.com/ -->
+    <string name="server_client_id">YOUR_SERVER_CLIENT_ID</string>
 </resources>
