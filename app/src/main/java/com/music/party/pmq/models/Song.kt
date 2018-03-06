@@ -6,7 +6,7 @@ import io.realm.annotations.PrimaryKey
 /**
  * Created by Kyle on 1/31/2018.
  */
-/*
+
 
 open class Song(
         @PrimaryKey var id : Long,
@@ -27,4 +27,4 @@ open class Song(
     //Default constructor.
     constructor() : this(0, "", "", "", "")
 
-}*/
+}

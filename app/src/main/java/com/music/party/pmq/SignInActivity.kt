@@ -81,12 +81,6 @@ class SignInActivity : AppCompatActivity(), SyncUser.Callback<SyncUser> {
             Log.d(TAG, "Logining IN")
             SyncUser.loginAsync(SyncCredentials.usernamePassword(email, password, false), MyApplication.AUTH_URL, this)
         }
-
-        testButton.setOnClickListener { view ->
-            //TODO this is it.
-            var intent: Intent = Intent(this, SpotifyAuth::class.java)
-            startActivity(intent)
-        }
     }
 
     private fun loginComplete(user: SyncUser?){
