@@ -7,13 +7,23 @@ import io.realm.annotations.PrimaryKey
  * Created by Kyle on 1/31/2018.
  */
 
-class Song(n_id : Long, n_name : String, n_artist : String, n_album : String, n_url : String) : RealmObject(){
+open class Song(
+        @PrimaryKey var id : Long,
+        var name : String,
+        var artist: String,
+        var album : String,
+        var songUrl : String
+) : RealmObject(){
 
-    @PrimaryKey var id : Long = n_id
+    companion object {
+        val ID = "id"
+        val NAME = "name"
+        val ARTIST = "artist"
+        val ALBUM = "album"
+        val SONG_URL = "songUrl"
+    }
 
-    var name : String = n_name
-    var artist: String = n_artist
-    var album : String = n_artist
-    var songUrl : String = n_url
+    //Default constructor.
+    constructor() : this(0, "", "", "", "")
 
 }
