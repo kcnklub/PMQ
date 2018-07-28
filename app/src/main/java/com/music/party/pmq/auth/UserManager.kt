@@ -35,7 +35,7 @@ object UserManager {
             AUTH_MODE.FACEBOOK -> LoginManager.getInstance().logOut()
         }
 
-        SyncUser.currentUser().logout()
+        SyncUser.current().logOut()
     }
 
 

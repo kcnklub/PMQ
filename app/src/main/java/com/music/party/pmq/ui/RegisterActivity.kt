@@ -47,7 +47,7 @@ class RegisterActivity : AppCompatActivity(), SyncUser.Callback<SyncUser> {
                 UserManager.setAuthMode(UserManager.AUTH_MODE.GOOGLE)
                 val credentials = SyncCredentials.facebook(loginResult?.accessToken!!.token)
                 userProviderId = credentials.identityProvider
-                SyncUser.loginAsync(credentials, AUTH_URL, this@RegisterActivity)
+                SyncUser.logInAsync(credentials, AUTH_URL, this@RegisterActivity)
             }
         }
 
@@ -57,7 +57,7 @@ class RegisterActivity : AppCompatActivity(), SyncUser.Callback<SyncUser> {
                 val acct: GoogleSignInAccount? = result.signInAccount
                 val credentials = google(acct?.idToken)
                 userProviderId = credentials.identityProvider
-                SyncUser.loginAsync(credentials, AUTH_URL, this@RegisterActivity)
+                SyncUser.logInAsync(credentials, AUTH_URL, this@RegisterActivity)
             }
         }
 
@@ -121,7 +121,7 @@ class RegisterActivity : AppCompatActivity(), SyncUser.Callback<SyncUser> {
         if (cancel) {
             focusView.requestFocus()
         } else {
-            SyncUser.loginAsync(
+            SyncUser.logInAsync(
                     SyncCredentials.usernamePassword(username, password, true),
                     MyApplication.AUTH_URL,
                     object : SyncUser.Callback<SyncUser> {
@@ -157,7 +157,7 @@ class RegisterActivity : AppCompatActivity(), SyncUser.Callback<SyncUser> {
                 } else {
                     Toast.makeText(this@RegisterActivity, "This email has been used before", Toast.LENGTH_LONG).show()
                     //warns the user and logouts out the realm user object and doesn't add the custom user to the realm.
-                    SyncUser.currentUser().logout()
+                    SyncUser.current().logOut()
                 }
             }
         })

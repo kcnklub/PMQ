@@ -41,7 +41,7 @@ class SignInActivity : AppCompatActivity(), SyncUser.Callback<SyncUser> {
 
         if (savedInstanceState == null) {
             if (!ACTION_IGNORE_CURRENT_USER.equals(intent.action)) {
-                val user = SyncUser.currentUser()
+                val user = SyncUser.current()
                 if (user != null) {
                     loginComplete(user)
                 }
@@ -79,7 +79,7 @@ class SignInActivity : AppCompatActivity(), SyncUser.Callback<SyncUser> {
             focusView.requestFocus()
         } else {
             Log.d(TAG, "Logining IN")
-            SyncUser.loginAsync(SyncCredentials.usernamePassword(email, password, false), MyApplication.AUTH_URL, this)
+            SyncUser.logInAsync(SyncCredentials.usernamePassword(email, password, false), MyApplication.AUTH_URL, this)
         }
     }
 
